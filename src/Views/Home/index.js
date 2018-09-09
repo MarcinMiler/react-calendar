@@ -1,7 +1,13 @@
 import React from 'react'
 
+import { CalendarHeader } from '../../Components/CalendarHeader'
+
 export class Home extends React.Component {
     render() {
-        return <h1>Calendar</h1>
+        return (
+            <React.Fragment>
+                <CalendarHeader />
+            </React.Fragment>
+        )
     }
 }

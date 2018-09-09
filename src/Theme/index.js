@@ -4,6 +4,8 @@ export const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600');
 
     body {
+        width: 100%;
+        height: 100vh;
         margin: 0px;
         font-family: Montserrat;
     }
