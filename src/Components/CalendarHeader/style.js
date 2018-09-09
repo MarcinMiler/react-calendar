@@ -22,6 +22,7 @@ export const LeftArrow = styled(MdKeyboardArrowLeft)`
     cursor: pointer;
 
     &:hover {
+        background: white;
         box-shadow: 0px 0px 15px lightgray;
     }
 `
@@ -32,6 +33,7 @@ export const RightArrow = styled(MdKeyboardArrowRight)`
     cursor: pointer;
 
     &:hover {
+        background: white;
         box-shadow: 0px 0px 15px lightgray;
     }
 `
