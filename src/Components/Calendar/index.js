@@ -1,40 +1,10 @@
 import React from 'react'
-import {
-    Container,
-    Legend,
-    LegendItem,
-    MonthGrid,
-    MonthGridItem
-} from './style'
+import { connect } from 'react-redux'
 
-export const Calendar = () => (
-    <Container>
-        <Legend>
-            <LegendItem>Monday</LegendItem>
-            <LegendItem>Tuesday</LegendItem>
-            <LegendItem>Wednesday</LegendItem>
-            <LegendItem>Thursday</LegendItem>
-            <LegendItem>Friday</LegendItem>
-            <LegendItem>Saturday</LegendItem>
-            <LegendItem>Sunday</LegendItem>
-        </Legend>
-        <MonthGrid>
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-            <MonthGridItem />
-        </MonthGrid>
-    </Container>
-)
+import { CalendarView } from './CalendarView'
+
+const mapStateToProps = state => ({
+    currentMonth: state.calendar.currentMonth
+})
+
+export const Calendar = connect(mapStateToProps)(CalendarView)
