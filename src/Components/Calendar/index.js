@@ -1,5 +1,11 @@
 import React from 'react'
-import { Container, Legend, LegendItem } from './style'
+import {
+    Container,
+    Legend,
+    LegendItem,
+    MonthGrid,
+    MonthGridItem
+} from './style'
 
 export const Calendar = () => (
     <Container>
@@ -12,5 +18,23 @@ export const Calendar = () => (
             <LegendItem>Saturday</LegendItem>
             <LegendItem>Sunday</LegendItem>
         </Legend>
+        <MonthGrid>
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+            <MonthGridItem />
+        </MonthGrid>
     </Container>
 )
