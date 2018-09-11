@@ -20,7 +20,9 @@ export const CalendarView = ({ currentMonth }) => (
         </Legend>
         <MonthGrid>
             {currentMonth.map((day, i) => (
-                <MonthGridItem key={i}>{day.day}</MonthGridItem>
+                <MonthGridItem key={i} disabled={!day.isPartOfMonth}>
+                    {day.day}
+                </MonthGridItem>
             ))}
         </MonthGrid>
     </Container>

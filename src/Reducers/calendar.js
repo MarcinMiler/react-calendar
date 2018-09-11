@@ -1,6 +1,7 @@
 import moment from 'moment'
 
 const generateCalendar = index => {
+    console.log(index)
     const month = moment().add(index, 'month')
     const start = moment()
         .add(index, 'month')
@@ -28,35 +29,50 @@ const generateCalendar = index => {
     return calendar
 }
 
+const getMonthName = index =>
+    moment()
+        .add(index, 'month')
+        .format('MMMM YYYY')
+
+const currentMonth = generateCalendar(0)
+
 const initialState = {
-    monthName: moment().format('MMMM'),
+    monthName: getMonthName(0),
     index: 0,
-    currentMonth: generateCalendar(0)
+    currentMonth,
+    allMonths: { 0: currentMonth }
 }
+
+const updateAllMonths = (state, index) =>
+    state.allMonths[index]
+        ? state.allMonths
+        : { ...state.allMonths, [index]: generateCalendar(index) }
 
 export const calendar = (state = initialState, action) => {
     switch (action.type) {
         case 'NEXT_MONTH': {
             let index = state.index + 1
 
+            const updatedAllMonths = updateAllMonths(state, index)
+
             return {
                 index,
-                monthName: moment()
-                    .add(index, 'month')
-                    .format('MMMM'),
-                currentMonth: generateCalendar(index)
+                monthName: getMonthName(index),
+                allMonths: updatedAllMonths,
+                currentMonth: updatedAllMonths[index]
             }
         }
 
         case 'PREV_MONTH': {
             let index = state.index - 1
 
+            const updatedAllMonths = updateAllMonths(state, index)
+
             return {
                 index,
-                monthName: moment()
-                    .add(index, 'month')
-                    .format('MMMM'),
-                currentMonth: generateCalendar(index)
+                monthName: getMonthName(index),
+                allMonths: updatedAllMonths,
+                currentMonth: updatedAllMonths[index]
             }
         }
 

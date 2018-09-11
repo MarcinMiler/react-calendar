@@ -35,10 +35,11 @@ export const MonthGrid = styled.div`
 `
 export const MonthGridItem = styled.div`
     width: 100%;
-    height: 100px;
+    height: 120px;
     padding: 10px;
     display: flex;
     justify-content: flex-end;
+    background-color: ${p => (p.disabled ? '#f9f9fb' : 'white')};
     border-bottom: 1px solid lightgray;
     border-right: 1px solid lightgray;
     font-weight: 500;
