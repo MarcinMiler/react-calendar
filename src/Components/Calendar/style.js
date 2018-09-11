@@ -36,11 +36,12 @@ export const MonthGrid = styled.div`
 export const MonthGridItem = styled.div`
     width: 100%;
     height: 100px;
+    padding: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
     border-bottom: 1px solid lightgray;
     border-right: 1px solid lightgray;
     font-weight: 500;
     color: gray;
+    box-sizing: border-box;
 `

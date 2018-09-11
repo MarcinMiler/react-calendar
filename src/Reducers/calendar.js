@@ -1,62 +1,66 @@
-import dayjs from 'dayjs'
+import moment from 'moment'
 
-const startOfMonth = dayjs()
-	.startOf('month')
-	.startOf('week')
+const generateCalendar = index => {
+    const month = moment().add(index, 'month')
+    const start = moment()
+        .add(index, 'month')
+        .startOf('month')
+        .startOf('isoWeek')
 
-const endOfMonth = dayjs().endOf('month')
+    const end = moment()
+        .add(index, 'month')
+        .endOf('month')
+        .endOf('isoWeek')
 
-const generateMonthCalendar = (start, end) => {
-	console.log(start.format('DD MMM YYYY'))
-	console.log(end.format('DD MMM YYYY'))
-	let calendar = []
+    const diff = end.diff(start, 'days')
 
-	const condition = end.diff(start, 'day')
+    let calendar = []
 
-	for (let i = 1; i <= condition; i++) {
-		calendar.push({ day: start.add(i, 'day').format('DD') })
-	}
+    for (let i = 0; i <= diff; i++) {
+        const clonedStart = start.clone()
+        const calculatedDay = clonedStart.add(i, 'day')
 
-	return calendar
+        calendar.push({
+            isPartOfMonth: month.isSame(calculatedDay, 'month'),
+            day: calculatedDay.format('DD')
+        })
+    }
+    return calendar
 }
 
-const currentMonth = generateMonthCalendar(startOfMonth, endOfMonth)
-
 const initialState = {
-	index: 0,
-	monthName: dayjs().format('MMMM YYYY'),
-	currentMonth
+    monthName: moment().format('MMMM'),
+    index: 0,
+    currentMonth: generateCalendar(0)
 }
 
 export const calendar = (state = initialState, action) => {
-	switch (action.type) {
-		case 'NEXT_MONTH':
-			let index = state.index + 1
+    switch (action.type) {
+        case 'NEXT_MONTH': {
+            let index = state.index + 1
 
-			const updatedStartMonth = dayjs()
-				.startOf('month')
-				.add(index, 'month')
-				.startOf('week')
+            return {
+                index,
+                monthName: moment()
+                    .add(index, 'month')
+                    .format('MMMM'),
+                currentMonth: generateCalendar(index)
+            }
+        }
 
-			const updatedEndMonth = dayjs()
-				.add(index, 'month')
-				.add(1, 'day')
-				.endOf('month')
-				.endOf('week')
+        case 'PREV_MONTH': {
+            let index = state.index - 1
 
-			const generated = generateMonthCalendar(
-				updatedStartMonth,
-				updatedEndMonth
-			)
+            return {
+                index,
+                monthName: moment()
+                    .add(index, 'month')
+                    .format('MMMM'),
+                currentMonth: generateCalendar(index)
+            }
+        }
 
-			return {
-				currentMonth: generated,
-				index,
-				monthName: dayjs()
-					.add(index, 'month')
-					.format('MMMM YYYY')
-			}
-		default:
-			return state
-	}
+        default:
+            return state
+    }
 }
