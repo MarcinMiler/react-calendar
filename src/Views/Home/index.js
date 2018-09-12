@@ -2,6 +2,7 @@ import React from 'react'
 
 import { CalendarHeader } from '../../Components/CalendarHeader'
 import { Calendar } from '../../Components/Calendar'
+import { ReminderForm } from '../../Components/ReminderForm'
 
 export class Home extends React.Component {
     render() {
@@ -9,6 +10,7 @@ export class Home extends React.Component {
             <React.Fragment>
                 <CalendarHeader />
                 <Calendar />
+                <ReminderForm />
             </React.Fragment>
         )
     }
