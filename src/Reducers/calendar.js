@@ -82,8 +82,8 @@ export const calendar = (state = initialState, action) => {
             if (state.allMonths[diff]) {
                 const newState = state.allMonths[diff].map(day => {
                     if (moment(action.date).isSame(day.date)) {
-                        const { date, time, name } = action
-                        day.reminders.push({ date, time, name })
+                        const { date, time, text } = action
+                        day.reminders.push({ date, time, text })
                     }
                     return day
                 })
