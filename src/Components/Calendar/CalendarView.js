@@ -4,7 +4,8 @@ import {
     Legend,
     LegendItem,
     MonthGrid,
-    MonthGridItem
+    MonthGridItem,
+    Reminder
 } from './style'
 
 export const CalendarView = ({ currentMonth }) => (
@@ -24,7 +25,7 @@ export const CalendarView = ({ currentMonth }) => (
                     {day.day}
                     {day.reminders.length > 0 &&
                         day.reminders.map((reminder, i) => (
-                            <p key={i}>reminder</p>
+                            <Reminder key={i}>Reminder</Reminder>
                         ))}
                 </MonthGridItem>
             ))}

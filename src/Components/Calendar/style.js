@@ -35,14 +35,26 @@ export const MonthGrid = styled.div`
 `
 export const MonthGridItem = styled.div`
     width: 100%;
-    height: 120px;
+    min-height: 120px;
     padding: 10px;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
     background-color: ${p => (p.disabled ? '#f9f9fb' : 'white')};
     border-bottom: 1px solid lightgray;
     border-right: 1px solid lightgray;
     font-weight: 500;
     color: gray;
+    box-sizing: border-box;
+`
+export const Reminder = styled.div`
+    width: 100%;
+    min-height: 30px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    border-left: 3px solid #ff5e7d;
+    background-color: #ffc4cf;
+    color: #ff5e7d;
     box-sizing: border-box;
 `

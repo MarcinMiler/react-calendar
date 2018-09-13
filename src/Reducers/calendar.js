@@ -35,12 +35,10 @@ const getMonthName = index =>
         .add(index, 'month')
         .format('MMMM YYYY')
 
-const currentMonth = generateCalendar(0)
-
 const initialState = {
     monthName: getMonthName(0),
     index: 0,
-    allMonths: { 0: currentMonth }
+    allMonths: { 0: generateCalendar(0) }
 }
 
 const updateAllMonths = (state, index) =>
