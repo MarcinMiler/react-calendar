@@ -42,7 +42,7 @@ export const MonthGridItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    background-color: ${p => (p.disabled ? '#f9f9fb' : 'white')};
+    background-color: ${p => (p.disabled ? '#e5e5e5' : 'white')};
     border-bottom: 1px solid lightgray;
     border-right: 1px solid lightgray;
     font-weight: 500;

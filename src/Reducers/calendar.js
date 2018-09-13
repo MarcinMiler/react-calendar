@@ -23,7 +23,7 @@ const generateCalendar = index => {
 
         calendar.push({
             isPartOfMonth: month.isSame(calculatedDay, 'month'),
-            day: calculatedDay.format('DD'),
+            day: calculatedDay.format('D'),
             date: calculatedDay,
             reminders: []
         })
