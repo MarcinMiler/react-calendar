@@ -73,17 +73,16 @@ export const calendar = (state = initialState, action) => {
         }
 
         case 'ADD_REMINDER': {
-            let diff = moment()
+            let diff = moment(action.date)
                 .startOf('month')
-                .diff(action.date, 'months')
-
-            diff = -diff
+                .diff(moment().startOf('month'), 'months')
 
             if (state.allMonths[diff]) {
                 const newState = state.allMonths[diff].map(day => {
                     if (moment(action.date).isSame(day.date)) {
                         const { date, time, text } = action
                         day.reminders.push({ date, time, text })
+                        day.reminders.sort((a, b) => a.time > b.time)
                     }
                     return day
                 })
