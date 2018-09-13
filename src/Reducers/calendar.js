@@ -1,4 +1,5 @@
 import moment from 'moment'
+import uuid from 'uuid/v4'
 
 const generateCalendar = index => {
     const month = moment().add(index, 'month')
@@ -81,7 +82,7 @@ export const calendar = (state = initialState, action) => {
                 const newState = state.allMonths[diff].map(day => {
                     if (moment(action.date).isSame(day.date)) {
                         const { date, time, text } = action
-                        day.reminders.push({ date, time, text })
+                        day.reminders.push({ date, time, text, id: uuid() })
                         day.reminders.sort((a, b) => a.time > b.time)
                     }
                     return day
@@ -106,6 +107,23 @@ export const calendar = (state = initialState, action) => {
                     ...state,
                     allMonths: { ...state.allMonths, [diff]: newState }
                 }
+            }
+        }
+
+        case 'DELETE_REMINDER': {
+            const { id } = action
+
+            const newState = state.allMonths[state.index].map(month => {
+                const filtredReminders = month.reminders.filter(
+                    reminder => reminder.id !== id
+                )
+
+                return { ...month, reminders: filtredReminders }
+            })
+
+            return {
+                ...state,
+                allMonths: { ...state.allMonths, [state.index]: newState }
             }
         }
 

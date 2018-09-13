@@ -5,10 +5,11 @@ import {
     LegendItem,
     MonthGrid,
     MonthGridItem,
-    Reminder
+    Reminder,
+    CloseIcon
 } from './style'
 
-export const CalendarView = ({ currentMonth }) => (
+export const CalendarView = ({ currentMonth, deleteReminder }) => (
     <Container>
         <Legend>
             <LegendItem>Monday</LegendItem>
@@ -25,7 +26,12 @@ export const CalendarView = ({ currentMonth }) => (
                     {day.day}
                     {day.reminders.length > 0 &&
                         day.reminders.map((reminder, i) => (
-                            <Reminder key={i}>{reminder.text}</Reminder>
+                            <Reminder key={i}>
+                                {reminder.text}
+                                <CloseIcon
+                                    onClick={() => deleteReminder(reminder.id)}
+                                />
+                            </Reminder>
                         ))}
                 </MonthGridItem>
             ))}

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { MdClose } from 'react-icons/md'
+
 export const Container = styled.div`
     width: 100%;
     height: 80%;
@@ -52,9 +54,17 @@ export const Reminder = styled.div`
     min-height: 30px;
     margin-top: 5px;
     padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 3px;
     border-left: 3px solid #ff5e7d;
     background-color: #ffc4cf;
     color: #ff5e7d;
     box-sizing: border-box;
+`
+export const CloseIcon = styled(MdClose)`
+    font-size: 18px;
+    color: #ff5e7d;
+    cursor: pointer;
 `
