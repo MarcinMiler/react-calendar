@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Container, Row, StyledInput, Button } from './style'
 
-export const ReminderFormView = ({ changeState }) => (
+export const ReminderFormView = ({ changeState, addReminder }) => (
     <Container>
         <Row>
             <StyledInput onChange={e => changeState('name', e.target.value)} />
@@ -15,6 +15,6 @@ export const ReminderFormView = ({ changeState }) => (
                 type="time"
             />
         </Row>
-        <Button>Save</Button>
+        <Button onClick={addReminder}>Save</Button>
     </Container>
 )

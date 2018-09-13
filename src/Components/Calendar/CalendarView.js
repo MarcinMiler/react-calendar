@@ -22,6 +22,10 @@ export const CalendarView = ({ currentMonth }) => (
             {currentMonth.map((day, i) => (
                 <MonthGridItem key={i} disabled={!day.isPartOfMonth}>
                     {day.day}
+                    {day.reminders.length > 0 &&
+                        day.reminders.map((reminder, i) => (
+                            <p key={i}>reminder</p>
+                        ))}
                 </MonthGridItem>
             ))}
         </MonthGrid>

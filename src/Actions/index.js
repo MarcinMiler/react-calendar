@@ -4,3 +4,9 @@ export const prevMonth = () => ({
 export const nextMonth = () => ({
     type: 'NEXT_MONTH'
 })
+export const addReminder = (text, date, time) => ({
+    type: 'ADD_REMINDER',
+    text,
+    date,
+    time
+})

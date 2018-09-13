@@ -1,7 +1,6 @@
 import moment from 'moment'
 
 const generateCalendar = index => {
-    console.log(index)
     const month = moment().add(index, 'month')
     const start = moment()
         .add(index, 'month')
@@ -23,7 +22,9 @@ const generateCalendar = index => {
 
         calendar.push({
             isPartOfMonth: month.isSame(calculatedDay, 'month'),
-            day: calculatedDay.format('DD')
+            day: calculatedDay.format('DD'),
+            date: calculatedDay,
+            reminders: []
         })
     }
     return calendar
@@ -39,7 +40,6 @@ const currentMonth = generateCalendar(0)
 const initialState = {
     monthName: getMonthName(0),
     index: 0,
-    currentMonth,
     allMonths: { 0: currentMonth }
 }
 
@@ -58,8 +58,7 @@ export const calendar = (state = initialState, action) => {
             return {
                 index,
                 monthName: getMonthName(index),
-                allMonths: updatedAllMonths,
-                currentMonth: updatedAllMonths[index]
+                allMonths: updatedAllMonths
             }
         }
 
@@ -71,8 +70,45 @@ export const calendar = (state = initialState, action) => {
             return {
                 index,
                 monthName: getMonthName(index),
-                allMonths: updatedAllMonths,
-                currentMonth: updatedAllMonths[index]
+                allMonths: updatedAllMonths
+            }
+        }
+
+        case 'ADD_REMINDER': {
+            let diff = moment()
+                .startOf('month')
+                .diff(action.date, 'months')
+
+            diff = -diff
+
+            if (state.allMonths[diff]) {
+                const newState = state.allMonths[diff].map(day => {
+                    if (moment(action.date).isSame(day.date)) {
+                        const { date, time, name } = action
+                        day.reminders.push({ date, time, name })
+                    }
+                    return day
+                })
+
+                return {
+                    ...state,
+                    allMonths: { ...state.allMonths, [diff]: newState }
+                }
+            } else {
+                const updatedAllMonths = updateAllMonths(state, diff)
+
+                const newState = updatedAllMonths[diff].map(day => {
+                    if (moment(action.date).isSame(day.date)) {
+                        const { date, time, name } = action
+                        day.reminders.push({ date, time, name })
+                    }
+                    return day
+                })
+
+                return {
+                    ...state,
+                    allMonths: { ...state.allMonths, [diff]: newState }
+                }
             }
         }
 
