@@ -1,5 +1,9 @@
 ## React/Redux Task - Calender with Reminders
 
+### Link to demo
+
+https://mm-react-calendar.netlify.com
+
 ### Core functionality
 
 -   [x] Ability to add a new “reminder”.
